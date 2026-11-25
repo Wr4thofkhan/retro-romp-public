@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Retro ROMp Public — Play retro games in your browser</title>
+<meta name="description" content="Retro ROMp Public: a free, no-login retro game player. Download a game from the shared Drive folder or Vimm's, load it on your device, then play it locally in your browser with EmulatorJS.">
+<meta name="theme-color" content="#111216">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anta&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar"><div class="topbar-inner">
+<a class="logo" href="#top"><span class="logo-mark">🎮</span> Retro ROMp <span style="color:#a7aab6;font-size:14px">Public</span></a>
+<nav class="pillbar" aria-label="Main">
+<a class="pill active" href="#systems">Systems</a>
+<a class="pill" href="#featured">Featured</a>
+<a class="pill" href="#device">On This Device</a>
+<a class="pill" href="#vimm">Vimm&rsquo;s Vault</a>
+<button class="pill" id="shareBtn" type="button">🔗 Share</button>
+</nav></div></header>
+
+<main class="wrap" id="top">
+<section class="hero">
+<span class="badge">FREE &middot; NO LOGIN &middot; NO ACCOUNT &middot; STATIC SITE</span>
+<h1>Retro games, played on your device.</h1>
+<p><strong>Retro ROMp Public is download-only.</strong> Nothing streams from Google Drive and nothing plays straight out of Drive. You download a game file to your own phone or tablet first, then you play it locally, in your browser, from that device.</p>
+<div class="steps">
+<div class="step"><div class="num">1</div><b>Download</b><br>Tap <b>Download from Drive</b> on a game, or download it from Vimm&rsquo;s Lair yourself. The file lands on your device.</div>
+<div class="step"><div class="num">2</div><b>Load it</b><br>Use <b>Load the downloaded file</b> below (or drop the file on the page). It is saved in your browser on this device only.</div>
+<div class="step"><div class="num">3</div><b>Play</b><br>Only now does a green <b>Play</b> button appear. Tap it and play locally with touch controls or a Bluetooth / USB controller.</div>
+</div>
+<p class="small">Nobody can upload to, delete from, or change Saud&rsquo;s Drive folder from this site. The folder is shared read-only. Files you load stay in IndexedDB on that device only &mdash; they are never uploaded anywhere.</p>
+<div class="callout"><h3>No permission requests &mdash; for friends</h3>
+<p style="margin:0">Friends do <b>not</b> have to ask permission to download every game, as long as Saud shares the Drive folder as <b>&ldquo;Anyone with the link, Viewer&rdquo;</b>. Then friends can download any game with <b>no Google account, no login, and no permission request</b>. If the folder is left restricted / only specific people, every friend <b>will</b> hit a &ldquo;Request access&rdquo; prompt per file &mdash; so this setting is what makes it work. Downloads from Vimm&rsquo;s Lair need no Drive permission at all.</p>
+<p style="margin:8px 0 0"><b>For Saud, the setup is:</b> open Google Drive, right-click the &ldquo;Games and ROMS&rdquo; folder, choose Share &gt; Share; under General access, change it to &ldquo;Anyone with the link&rdquo; and set the role to &ldquo;Viewer&rdquo;; click Copy link / Done. That is the whole setup &mdash; no per-file sharing, no per-game permission requests.</p></div>
+<div style="display:flex;gap:10px;flex-wrap:wrap">
+<a class="btn violet" href="https://drive.google.com/drive/folders/1winQ_bLs3MbU_NFDQerKHrX3TDzC3ZEI" target="_blank" rel="noopener">Open the Drive folder (read-only)</a>
+<a class="btn dark" href="#vimm">Browse Vimm&rsquo;s Vault</a>
+<a class="btn dark" href="#device">Go to On This Device</a>
+</div>
+</section>
+
+<div class="searchrow">
+<label class="search">🔍 <input id="globalSearch" type="search" placeholder="Search the featured library — try &ldquo;mario 2&rdquo; or &ldquo;zelda ii&rdquo;&hellip;" aria-label="Search featured games"></label>
+<button class="btn dark" id="clearSearch" type="button">Clear</button>
+</div>
+<p class="note" id="searchHint">Search matches words in any order, and numbers match Roman numerals — “2” finds “II”, “3” finds “III”.</p>
+
+<section id="systems">
+<div class="section-head"><h2>All systems</h2><p>11 sections &middot; tap a card to see its games</p></div>
+<div class="grid" id="systemsGrid"></div>
+<div id="sectionView" class="hidden">
+<div class="backbtn"><button class="btn dark" id="backBtn" type="button">← All systems</button></div>
+<div class="banner"><div style="font-size:40px" id="sectionEmoji">🎮</div><div><h2 id="sectionTitle"></h2><p id="sectionDesc"></p></div><span class="tag" id="sectionCount"></span></div>
+<div class="grid games" id="sectionGames"></div>
+</div>
+</section>
+
+<section id="featured">
+<div class="section-head"><h2>Featured library</h2><p><span id="featuredCount">59</span> featured games &middot; download first, then play</p></div>
+<p class="note">A game that has <b>not</b> been downloaded has <b>no Play button</b> — only <b>Download from Drive</b>. Download it, load the file below, and the green Play button appears. We do not invent download links: every Download button opens the real shared Drive folder, where you pick the game file yourself.</p>
+<div class="grid games" id="featuredGrid"></div>
+<p class="note hidden" id="noResults">No featured games match that search. Try fewer words, or browse Vimm&rsquo;s Vault below.</p>
+</section>
+
+<section id="device">
+<div class="section-head"><h2>On This Device</h2><p>your downloaded games, stored locally in this browser</p></div>
+<div class="callout"><h3>How this works, in plain words</h3>
+<p style="margin:0">1. Download a game from Drive or Vimm&rsquo;s. &nbsp;2. Tap <b>Load the downloaded file</b> and pick that file (or drag it onto the drop zone). &nbsp;3. It is saved in IndexedDB on <b>this device only</b>. &nbsp;4. Tap the green <b>Play</b> button on that game. Saves are stored locally on the device, not synced to Drive.</p></div>
+<div class="callout"><h3>Downloading from Drive — no permission requests</h3>
+<p style="margin:0">Friends do <b>not</b> have to ask permission to download every game, as long as the Drive folder is shared as <b>&ldquo;Anyone with the link, Viewer&rdquo;</b> — then any game downloads with no Google account, no login, and no permission request. If the folder is left restricted, friends <b>will</b> hit a &ldquo;Request access&rdquo; prompt per file. Downloads from Vimm&rsquo;s Lair need no Drive permission at all.</p></div>
+<div class="dropzone" id="dropzone">
+<p style="margin:0 0 8px"><b>Drop a ROM file here</b>, or</p>
+<button class="btn violet" id="pickBtn" type="button">Load the downloaded file</button>
+<input type="file" id="fileInput" multiple accept=".zip,.smc,.sfc,.nes,.md,.bin,.sms,.z64,.n64,.v64,.pce,.sgx,.a26,.a78,.a52,.lnx,.7z">
+<p class="small">Accepted: .zip .smc .sfc .nes .md .bin .sms .z64 .n64 .v64 .pce .sgx .a26 .a78 .a52 .lnx .7z &middot; Ignored: .nfo, desktop.ini &middot; A .zip may contain the ROM inside it. Files stay on this device only.</p>
+</div>
+<div id="deviceList"><p class="note">No games on this device yet. Download one from Drive or Vimm&rsquo;s, then load it here.</p></div>
+<p><button class="btn dark" id="clearDevice" type="button">Remove all games from this device</button></p>
+</section>
+
+<section id="vimm">
+<div class="section-head"><h2>Vimm&rsquo;s Vault</h2><p>catalog &middot; links only — this site never downloads from Vimm&rsquo;s</p></div>
+<div class="callout warn"><h3>Please read this first</h3>
+<p style="margin:0">Vimm&rsquo;s Lair blocks automated fetches with a Cloudflare check, so <b>this site never downloads from Vimm&rsquo;s itself</b>. You download the ROM from Vimm&rsquo;s yourself (tap the game&rsquo;s Vimm&rsquo;s link, it opens in a new tab), then come back and use <b>“Add the ROM”</b> — the <b>Load the downloaded file</b> button above — to play it. The catalogs below are a bundled selection, not the whole vault. The full SNES vault on Vimm&rsquo;s holds over 4,100 games (verified: 4,147 known media, No-Intro dat 2026-11-20). Use <b>Search all of Vimm&rsquo;s</b> to reach the rest.</p></div>
+<div class="searchrow"><label class="search">🔍 <input id="vimmSearchAll" type="search" placeholder="Search all of Vimm's…"></label><button class="btn violet" id="vimmSearchAllBtn" type="button">Search all of Vimm&rsquo;s ↗</button></div>
+<div class="tabs" id="vimmTabs" role="tablist"></div>
+<div class="searchrow"><label class="search">🔍 <input id="vimmSearch" type="search" placeholder="Search this console's catalog…" aria-label="Search this console catalog"></label></div>
+<p class="note" id="vimmCount"></p>
+<div id="vimmEmpty" class="callout hidden"></div>
+<div class="grid games" id="vimmGrid"></div>
+</section>
+
+<section id="limits">
+<div class="section-head"><h2>Honest limits</h2></div>
+<ul>
+<li><b>RetroAchievements is NOT implemented.</b> EmulatorJS does not implement it, so we do not pretend it works.</li>
+<li><b>Saves are stored locally</b> on the device, not synced to Google Drive.</li>
+<li><b>No Dreamcast.</b> Dreamcast games are played in the separate Flycast app, not here.</li>
+<li><b>Actual gameplay needs a real ROM file you supply</b> — downloaded from Drive or Vimm&rsquo;s and loaded on your device.</li>
+<li><b>Neo Geo</b> games need the <code>neogeo.zip</code> BIOS file alongside them. <b>PC Engine / SuperGrafx</b> cartridge games need no BIOS.</li>
+<li><b>N64:</b> games get up to 120 seconds to start before timing out. If a game stays black, you will see a clear error and a way back — never a silent black screen. <b>X-Men vs. Street Fighter 64</b> black-screens on mupen64plus_next, so it defaults to parallel_n64.</li>
+</ul>
+<p class="note">Cover art: Libretro Thumbnails on GitHub first; if a cover is missing, the card shows a styled letter tile with the game&rsquo;s initials instead of a broken image. No ScreenScraper, IGDB, SteamGridDB, MobyGames, The Cover Project, or VGBoxArt.</p>
+</section>
+
+<footer>
+<p><b>Retro ROMp Public</b> — free, static, no login, no backend. EmulatorJS 4.2.3 from cdn.emulatorjs.org. Games are not included in this site. Download them yourself from the shared Drive folder or Vimm&rsquo;s Lair, then play them locally on your device.</p>
+<p class="small">Drive folder (read-only): <a href="https://drive.google.com/drive/folders/1winQ_bLs3MbU_NFDQerKHrX3TDzC3ZEI" target="_blank" rel="noopener">Games and ROMS</a> &middot; Vimm&rsquo;s Lair: <a href="https://vimm.net/vault/" target="_blank" rel="noopener">vimm.net/vault</a></p>
+</footer>
+</main>
+
+<div class="player hidden" id="player" role="dialog" aria-label="Game player">
+<header>
+<button class="btn dark" id="playerBack" type="button">← Library</button>
+<h2 id="playerTitle">Playing</h2>
+<label class="small" for="coreSelect" id="coreLabel">Core</label>
+<select id="coreSelect"></select>
+<button class="btn dark" id="fullscreenBtn" type="button">⛶ Full screen</button>
+</header>
+<div class="player-stage"><div id="game"></div><div class="player-error hidden" id="playerError"><div class="box"><h3>That game didn&rsquo;t start</h3><p id="playerErrorText">The emulator did not start in time.</p><p class="small">Try the other N64 core (for N64 games), check the file is a valid ROM for that system, or re-download it and load it again.</p><button class="btn violet" id="playerErrorBack" type="button">← Back to the library</button></div></div></div>
+</div>
+
+<div class="toast hidden" id="toast"></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

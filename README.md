@@ -44,6 +44,24 @@ The same files also work on Netlify or Vercel (drag the folder in as a
 static site), but GitHub Pages is the intended home and needs no setup
 beyond the steps above.
 
+## Set up a ROMS folder
+
+Make one folder on the device and keep all downloaded games in it:
+
+1. Open the Files app. On Android: Files, Internal storage, 3 dots or +,
+   New folder, name it **ROMS**. On iPhone: Files, On My iPhone, 3 dots,
+   New Folder, name it **ROMS**.
+2. Save every downloaded game into that ROMS folder.
+3. Disc games: all the files for one disc game stay together in their own
+   folder inside ROMS (for example ROMS / Marvel vs. Capcom 2), with the
+   .cue file and all its track files (.bin / .raw) in that one folder.
+   Load the .cue file, not a single track file.
+4. Back on the site, On This Device, Load the downloaded file, open the
+   ROMS folder, pick the game file.
+
+A ROMS folder is not required to play, it just keeps downloads tidy and
+keeps disc-game tracks together. A normal cartridge game is one file.
+
 ## Sharing the Google Drive folder — Saud, do this once
 
 Friends do **not** have to ask permission to download every game, as long
@@ -78,9 +96,12 @@ Downloads from Vimm's Lair need no Drive permission at all.
 2. Pick a system, or a featured game, and tap **Download from Drive**.
    The real shared Drive folder opens in a new tab. Find the game file in
    the folder and download it to the device.
-   - Or, in **Vimm's Vault**, tap a game's **Vimm's page** link, download
-     the ROM from Vimm's themselves (no Drive permission needed), and come
-     back here.
+   - Or, under any featured game, tap **Vimm's page** to open that game's
+     own page on Vimm's Lair and download the ROM from Vimm's themselves
+     (no Drive permission needed), and come back here.
+   - The Vimm's Vault section below also has a **Vimm's page** link under
+     every game in its bundled catalogs. Arcade, Neo Geo, and ROM Hacks
+     have no Vimm's Vault, so those games are Drive only.
 3. Back on the site, go to **On This Device** and tap **Load the
    downloaded file** (or drag the file onto the drop zone) and pick the
    file they just downloaded.

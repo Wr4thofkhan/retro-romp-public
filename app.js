@@ -5,6 +5,9 @@ const $ = s => document.querySelector(s);
 const ACCEPTED = [".zip",".smc",".sfc",".nes",".md",".bin",".sms",".z64",".n64",".v64",".pce",".sgx",".a26",".a78",".a52",".lnx",".7z"];
 const IGNORED = [".nfo","desktop.ini"];
 const CORE_BY_SYSTEM = {SNES:"snes9x",NES:"fceumm",Genesis:"genesis_plus_gx",MasterSystem:"smsplus",N64:"mupen64plus_next",PlayStation:"pcsx_rearmed",PCEngine:"mednafen_pce",NeoGeo:"fbneo",Arcade:"fbneo",Atari:"stella2014",ROMHacks:"snes9x"};
+const VIMM_FOR_FEATURED = {SNES:"SNES", NES:"NES", Genesis:"Genesis", N64:"Nintendo64", PlayStation:"PlayStation", MasterSystem:"MasterSystem", PCEngine:"TurboGrafx-16", Atari:"Atari2600"};
+/* Arcade and Neo Geo have no Vimm's Vault, and ROM Hacks are fan-made, so
+   those featured games get no Vimm's link — Drive only. */
 const SYSTEM_LABEL = {}; SYSTEMS.forEach(s=>SYSTEM_LABEL[s.id]=s.short);
 const FOLDER_BY_SYSTEM = {}; SYSTEMS.forEach(s=>FOLDER_BY_SYSTEM[s.id]=s.folder);
 
@@ -98,6 +101,7 @@ function artHtml(title, systemId){
 function featuredCard(g){
   const owned=deviceMatchFor(g.title);
   const sys=SYSTEM_LABEL[g.system]||g.system;
+  const vimmSys=VIMM_FOR_FEATURED[g.system];
   return `<article class="card gamecard" data-title="${g.title.replace(/"/g,"&quot;")}">
     ${artHtml(g.title,g.system)}
     <div class="body"><h3>${g.title}</h3><div class="meta">${sys}${g.hack?' &middot; <span class="tag hack">Fan-made hack</span>':""}</div>
@@ -105,6 +109,7 @@ function featuredCard(g){
     <div class="actions">
       ${owned?`<button class="btn green" data-play-featured="${g.title.replace(/"/g,"&quot;")}" data-system="${g.system}">▶ Play</button>`:""}
       <a class="btn dark" href="${DRIVE_URL}" target="_blank" rel="noopener">⬇ Download from Drive</a>
+      ${vimmSys?`<a class="btn violet" href="${vimmUrl(vimmSys,g.title)}" target="_blank" rel="noopener">Vimm&rsquo;s page ↗</a>`:""}
     </div></article>`;
 }
 function renderFeatured(){

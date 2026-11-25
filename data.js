@@ -1,4 +1,4 @@
-/* Retro ROMp Public — data. No ROM files, no download URLs for games.
+/* Retro ROMp — data. No ROM files, no download URLs for games.
    Every Download button opens the real shared Drive folder; every Vimm's
    link is a link to vimm.net (target _blank). Nothing here fetches Vimm's. */
 const DRIVE_URL = "https://drive.google.com/drive/folders/1winQ_bLs3MbU_NFDQerKHrX3TDzC3ZEI";

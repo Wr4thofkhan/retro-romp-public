@@ -1,4 +1,4 @@
-/* Retro ROMp Public — app logic. Static only. No ROMs, no Vimm's fetching.
+/* Retro ROMp — app logic. Static only. No ROMs, no Vimm's fetching.
    EmulatorJS 4.2.3 is loaded on demand from cdn.emulatorjs.org. */
 "use strict";
 const $ = s => document.querySelector(s);

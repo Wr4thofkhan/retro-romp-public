@@ -1,4 +1,4 @@
-# Retro ROMp Public
+# Retro ROMp
 
 A free, no-login, static retro game player. No backend, no build step, no
 account, no paid services, no API keys. Plain HTML / CSS / JS that GitHub
@@ -18,10 +18,10 @@ No ROM files or copyrighted game files are included in this site.
 | File | What it is |
 |---|---|
 | `index.html` | The whole app: systems grid, featured library, On This Device, Vimm's Vault, player |
-| `styles.css` | NeoStation-style dark-slate UI (`#111216`), violet `#7c5cff` selection, green Play buttons |
+| `styles.css` | 80s retro neon UI (hot pink / cyan / chrome yellow on black, Press Start 2P pixel type, scanlines, glowing arcade cards) |
 | `app.js` | Search, IndexedDB library, file loading, EmulatorJS player, Vimm's tabs, Share |
 | `data.js` | Featured library (59 games) and the bundled Vimm's catalogs (310 games) |
-| `manifest.json` | PWA manifest (name Retro ROMp Public, standalone, theme `#111216`) |
+| `manifest.json` | PWA manifest (name Retro ROMp, standalone, theme `#111216`) |
 | `icon.svg` | Inline SVG gamepad icon referenced by the manifest (no binary icons) |
 | `.nojekyll` | Empty file so GitHub Pages serves the files as-is |
 | `README.md` | This file |

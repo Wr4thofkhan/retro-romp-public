@@ -21,7 +21,7 @@ No ROM files or copyrighted game files are included in this site.
 | `styles.css` | 80s retro neon UI (hot pink / cyan / chrome yellow on black, Press Start 2P pixel type, scanlines, glowing arcade cards) |
 | `app.js` | Search, IndexedDB library, file loading, EmulatorJS player, Vimm's tabs, Share |
 | `data.js` | Featured library (59 games) and the bundled Vimm's catalogs (310 games) |
-| `manifest.json` | PWA manifest (name Retro ROMp, standalone, theme `#111216`) |
+| `manifest.json` | PWA manifest (name Retro ROMp, standalone, theme `#0a0014`) |
 | `icon.svg` | Inline SVG gamepad icon referenced by the manifest (no binary icons) |
 | `.nojekyll` | Empty file so GitHub Pages serves the files as-is |
 | `README.md` | This file |
